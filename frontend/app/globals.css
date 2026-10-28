@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper text-ink font-sans antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  :focus-visible { outline: 3px solid #F0A81C; outline-offset: 2px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply bg-marigold text-ink hover:bg-[#dd9710]; }
+  .btn-dark { @apply bg-pine text-white hover:bg-pine-light; }
+  .btn-outline { @apply border-2 border-pine/70 text-pine hover:bg-mist; }
+  .field { @apply w-full rounded-lg border border-pine/25 bg-white px-3.5 py-3 text-base placeholder:text-ink/40 focus:border-pine; }
+
+  /* the clinic token slip: a printed slip with a perforated edge */
+  .slip { @apply relative rounded-2xl bg-slip ring-1 ring-pine/15; box-shadow: 0 14px 30px -14px rgba(15, 46, 51, 0.3); }
+  .slip-perf { @apply relative border-t-2 border-dashed border-pine/25; }
+  .slip-perf::before, .slip-perf::after { content: ""; @apply absolute top-0 h-5 w-5 -translate-y-1/2 rounded-full bg-paper; }
+  .slip-perf::before { left: -0.625rem; }
+  .slip-perf::after { right: -0.625rem; }
+}
+
+@media print {
+  header, footer, .no-print { display: none !important; }
+  body { background: white; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
